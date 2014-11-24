@@ -1,6 +1,6 @@
-class MarketplaceScreen < Screen
+class InventoryScreen < Screen
   def name
-    "Marketplace"
+    "Inventory"
   end
 
   def allow_global_actions?
@@ -9,10 +9,14 @@ class MarketplaceScreen < Screen
 
   def content
     result = []
-    result << "What can your friendly local drug dealer sell you today?"
+    result << "Here's what's in your backpack:"
     result << ""
     i = 9
-    result = result + @player.current_city.drugs.map { |name, drug| i += 1; str = "#{i.to_s(36)}) #{name} - $#{drug.price}"; str }
+    result = result + @player.inventory.map { |name, quantity| i += 1; str = "#{i.to_s(36)}) #{name} - $#{quantity}"; str }
+    if result.size == 2
+      result << ""
+      result << "....it's empty."
+    end
     if @message
       result << ""
       result << @message

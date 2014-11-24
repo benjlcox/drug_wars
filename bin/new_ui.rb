@@ -38,7 +38,7 @@ class NewUI
     when "1"
       @current_screen = MarketplaceScreen.new(@player)
     when "2"
-      # inventory_screen
+      @current_screen = InventoryScreen.new(@player)
     when "3"
       @current_screen = TravelScreen.new(@player)
     when "4"
