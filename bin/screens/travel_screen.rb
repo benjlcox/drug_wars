@@ -1,6 +1,7 @@
 class TravelScreen < Screen
   def initialize(player)
     super
+
   end
 
   def name
@@ -24,13 +25,9 @@ class TravelScreen < Screen
     true
   end
 
-  def handle_action(input)
-    i = 9
-    options = @player.world.list.keys.inject({}) { |result, city| i += 1; result[i.to_s(36)] = city; result }
-    city = options[input]
-    if city.nil? || city == @player.city
-      @message = "Invalid option!!!"
-    else
+  def submenu(input)
+    city = handle_action(input, @player.world.list)
+    unless city.nil? || city == @player.city
       @player.travel(city)
     end
     paint

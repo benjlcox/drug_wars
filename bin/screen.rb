@@ -28,11 +28,11 @@
     end
 
     def name
-      raise RuntimeError.new("Subclass should implement 'content' method")
+      raise RuntimeError.new("Subclass should implement 'name' method")
     end
 
     def allow_global_actions?
-      raise RuntimeError.new("Subclass should implement 'content' method")
+      raise RuntimeError.new("Subclass should implement 'allow_global_actions?' method")
     end
 
     def header
@@ -60,6 +60,12 @@
         content << nil
       end
       content
+    end
+
+    def handle_action(input, list)
+      i = 9
+      options = list.keys.inject({}) { |result, option| i += 1; result[i.to_s(36)] = option; result }
+      options[input]
     end
 
   end
