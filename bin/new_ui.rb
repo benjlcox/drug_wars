@@ -37,12 +37,10 @@ class NewUI
     case input
     when "1"
       @current_screen = MarketplaceScreen.new(@player)
-      true
     when "2"
       # inventory_screen
     when "3"
       @current_screen = TravelScreen.new(@player)
-      true
     when "4"
       # loan_screen
     when "5"
