@@ -1,0 +1,30 @@
+Weed:
+  name: Weed
+  lower_bound: 5
+  upper_bound: 30
+  volatility: 6
+Hash:
+  name: Hash
+  lower_bound: 15
+  upper_bound: 40
+  volatility: 6
+Shrooms:
+  name: Shrooms
+  lower_bound: 25
+  upper_bound: 50
+  volatility: 6
+Ecstacy:
+  name: Ecstacy
+  lower_bound: 30
+  upper_bound: 70
+  volatility: 6
+Cocaine:
+  name: Cocaine
+  lower_bound: 50
+  upper_bound: 100
+  volatility: 6
+Ketamine:
+  name: Ketamine
+  lower_bound: 70
+  upper_bound: 120
+  volatility: 6
