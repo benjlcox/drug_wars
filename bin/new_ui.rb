@@ -25,8 +25,8 @@ class NewUI
 
     return if success
 
-    if @current_screen.respond_to?(:handle_action)
-      @current_screen.handle_action(user_input)
+    if @current_screen.respond_to?(:submenu)
+      @current_screen.submenu(user_input)
     else
       print "Invalid input. Try again."
       sleep 1.5
