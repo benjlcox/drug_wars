@@ -1,11 +1,15 @@
 class TravelScreen < Screen
   def initialize(player)
     super
-
+    @player = player
   end
 
   def name
     "Travel"
+  end
+
+  def allow_global_actions?
+    true
   end
 
   def content
@@ -19,10 +23,6 @@ class TravelScreen < Screen
       result << @message
     end
     result
-  end
-
-  def allow_global_actions?
-    true
   end
 
   def submenu(input)

@@ -1,4 +1,10 @@
 class MarketplaceScreen < Screen
+
+  def initialize(player)
+    super
+    @player = player
+  end
+
   def name
     "Marketplace"
   end
@@ -22,7 +28,6 @@ class MarketplaceScreen < Screen
 
   def submenu(input)
     drug = handle_action(input, @player.current_city.drugs)
-    #Open BuyDrug screen
-    paint
+    BuyScreen.new(@player, drug)
   end
 end

@@ -1,4 +1,10 @@
 class InventoryScreen < Screen
+
+  def initialize(player)
+    super
+    @player = player
+  end
+
   def name
     "Inventory"
   end
@@ -12,7 +18,7 @@ class InventoryScreen < Screen
     result << "Here's what's in your backpack:"
     result << ""
     i = 9
-    result = result + @player.inventory.map { |name, quantity| i += 1; str = "#{i.to_s(36)}) #{name} - $#{quantity}"; str }
+    result = result + @player.inventory.map { |name, quantity| i += 1; str = "#{i.to_s(36)}) #{name} - #{quantity}"; str }
     if result.size == 2
       result << ""
       result << "....it's empty."
@@ -26,7 +32,7 @@ class InventoryScreen < Screen
 
   def submenu(input)
     drug = handle_action(input, @player.current_city.drugs)
-    #Open BuyDrug screen
+    #Open ditch screen
     paint
   end
 end

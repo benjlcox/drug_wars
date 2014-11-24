@@ -16,7 +16,7 @@ class Player
       add_to_inventory(drug, quantity)
       remove_money(cost)
     else
-      "Not enough money"
+      false
     end
   end
 
@@ -27,7 +27,7 @@ class Player
       subtract_from_inventory(drug, quantity)
       add_money(value)
     else
-      "Not enough inventory"
+      false
     end
   end
 

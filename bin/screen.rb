@@ -1,5 +1,5 @@
   class Screen
-    def initialize(player)
+    def initialize(player, options={})
       @player = player
       @big_separator = "=" * 100
       @small_separator = "-" * 100
@@ -32,6 +32,10 @@
     end
 
     def allow_global_actions?
+      raise RuntimeError.new("Subclass should implement 'allow_global_actions?' method")
+    end
+
+    def requests_numeric_input?
       raise RuntimeError.new("Subclass should implement 'allow_global_actions?' method")
     end
 

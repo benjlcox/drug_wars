@@ -13,6 +13,7 @@ require_relative "bin/screen"
 require_relative "bin/screens/travel_screen"
 require_relative "bin/screens/marketplace_screen"
 require_relative "bin/screens/inventory_screen"
+require_relative "bin/screens/buy_screen"
 #require_relative "bin/ui"
 
 game = NewUI.new(Player.new("Ben", "Toronto"))

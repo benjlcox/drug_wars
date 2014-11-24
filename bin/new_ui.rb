@@ -26,11 +26,12 @@ class NewUI
     return if success
 
     if @current_screen.respond_to?(:submenu)
-      @current_screen.submenu(user_input)
+      next_screen = @current_screen.submenu(user_input)
     else
       print "Invalid input. Try again."
       sleep 1.5
     end
+    @current_screen = next_screen if next_screen.is_a?(Screen)
   end
 
   def handle_global_action(input)
