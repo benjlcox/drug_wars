@@ -1,9 +1,7 @@
 class BuyScreen < Screen
 
-  def initialize(player, drug)
-    super
-    @player = player
-    @drug = drug
+  def initialize(player)
+    super(player)
   end
 
   def name
@@ -11,13 +9,15 @@ class BuyScreen < Screen
   end
 
   def allow_global_actions?
-    false
+    true
   end
 
   def content
     result = []
-    result << "How much #{@drug} would you like to buy?"
+    result << "What would you like to buy?"
     result << ""
+    i = 9
+    result = result + @player.current_city.drugs.map { |name, drug| i += 1; str = "#{i.to_s(36)}) #{name} - $#{drug.price}"; str }
     if @message
       result << ""
       result << @message
@@ -26,11 +26,9 @@ class BuyScreen < Screen
   end
 
   def submenu(input)
-    if @player.buy(@drug, input.to_i)
-      @message = "It was good doing business."
-      MarketplaceScreen.new(@player)
-    else
-      @message = "You don't have enough money to buy #{input}. Try buying less."
+    selection = handle_action(input, @player.current_city.drugs)
+    if selection
+      TransactionScreen.new(@player, {drug: selection, type:"buy"})
     end
   end
 end

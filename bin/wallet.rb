@@ -17,7 +17,7 @@ class Wallet
   private
 
   def ensure_not_negative(amount)
-    if (@money -= amount) < 0
+    if (@money - amount) < 0
       raise NotEnoughMoney
     end
   end

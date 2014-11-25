@@ -20,21 +20,21 @@ class NewUI
 
   def handle_user_input(user_input)
     if @current_screen.allow_global_actions?
-      success = handle_global_action(user_input)
+      success = global_screen_router(user_input)
     end
 
     return if success
 
     if @current_screen.respond_to?(:submenu)
-      next_screen = @current_screen.submenu(user_input)
+      subscreen = @current_screen.submenu(user_input)
     else
       print "Invalid input. Try again."
       sleep 1.5
     end
-    @current_screen = next_screen if next_screen.is_a?(Screen)
+    @current_screen = subscreen if subscreen.is_a?(Screen)
   end
 
-  def handle_global_action(input)
+  def global_screen_router(input)
     case input
     when "1"
       @current_screen = MarketplaceScreen.new(@player)
@@ -51,5 +51,4 @@ class NewUI
     end
     return true
   end
-
 end

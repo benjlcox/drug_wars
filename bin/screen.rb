@@ -1,6 +1,9 @@
   class Screen
+    attr_accessor :submenu_text
+
     def initialize(player, options={})
       @player = player
+      @options
       @big_separator = "=" * 100
       @small_separator = "-" * 100
     end
@@ -9,12 +12,12 @@
       actions.include?(user_input)
     end
 
-    def paint(submenu=nil)
+    def paint
       system "clear" or system "cls"
       grid = []
       grid << header
       grid << content_whitespace_padding(content)
-      grid << footer(submenu)
+      grid << footer(submenu_text)
       grid.flatten!.each do |row|
         print "#{row}\n"
       end
@@ -35,10 +38,6 @@
       raise RuntimeError.new("Subclass should implement 'allow_global_actions?' method")
     end
 
-    def requests_numeric_input?
-      raise RuntimeError.new("Subclass should implement 'allow_global_actions?' method")
-    end
-
     def header
       [@big_separator,
       "#{@player.name} | $#{@player.check_money} | Day: #{@player.check_day} | City: #{@player.city} | Screen: #{name}",
@@ -48,6 +47,7 @@
     def footer(submenu)
       [@small_separator,
       submenu,
+      @small_separator,
       "(1) Marketplace | (2) Inventory | (3) Travel | (4) Loan Shark | (5) Fence",
       @big_separator]
     end
@@ -69,7 +69,7 @@
     def handle_action(input, list)
       i = 9
       options = list.keys.inject({}) { |result, option| i += 1; result[i.to_s(36)] = option; result }
-      options[input]
+      options[input].nil? ? false : options[input]
     end
 
   end

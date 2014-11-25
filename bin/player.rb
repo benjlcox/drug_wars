@@ -52,6 +52,11 @@ class Player
     @backpack.contents
   end
 
+  def quantity_in_inventory(name)
+    quantity = @backpack.find(name)
+    quantity.nil? ? 0 : quantity
+  end
+
   def add_to_inventory(item, quantity)
     @backpack.add(item, quantity)
   end
@@ -77,6 +82,8 @@ class Player
   end
 
   def enough_inventory?(name, quantity)
+    item = @backpack.find(name)
+    return false if item.nil?
     @backpack.find(name) >= quantity
   end
 
