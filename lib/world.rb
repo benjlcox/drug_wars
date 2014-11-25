@@ -32,8 +32,8 @@ class World
   end
 
   def load_from_file
-    city_db = YAML.load_file("config/cities.yml")
-    drug_db = YAML.load_file("config/drugs.yml")
+    city_db = YAML.load_file("./config/cities.yml")
+    drug_db = YAML.load_file("./config/drugs.yml")
     city_db.each_pair do |city, drugs|
       city_drugs = {}
       drugs.each do |drug|
