@@ -9,7 +9,7 @@ class MarketplaceScreen < Screen
   end
 
   def submenu_text
-    "b) Buy | s) Sell"
+    "(b) Buy | (s) Sell"
   end
 
   def allow_global_actions?
