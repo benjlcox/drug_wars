@@ -45,11 +45,17 @@
     end
 
     def footer(submenu)
-      [@small_separator,
-      submenu,
-      @small_separator,
-      "(1) Marketplace | (2) Inventory | (3) Travel | (4) Loan Shark | (5) Fence",
-      @big_separator]
+      footer = []
+      footer << @small_separator
+      footer << submenu
+      if allow_global_actions?
+        footer << @small_separator
+        footer << "(1) Marketplace | (2) Inventory | (3) Travel | (4) Loan Shark | (5) Fence" if allow_global_actions?
+      else
+        footer << ""
+        footer << ""
+      end
+      footer << @big_separator
     end
 
     def content_whitespace_padding(data)
