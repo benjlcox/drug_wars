@@ -13,7 +13,6 @@ class UI
       break if user_input == "quit"
       handle_user_input(user_input)
     end
-
   end
 
   private

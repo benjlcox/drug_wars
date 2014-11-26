@@ -47,5 +47,4 @@ class World
       @cities["#{city}"] = City.new("#{city}", city_drugs)
     end
   end
-
 end
