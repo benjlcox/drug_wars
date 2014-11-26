@@ -1,8 +1,6 @@
 class Drug
 
-  attr_reader :name
-  attr_reader :price
-  attr_reader :trend
+  attr_reader :name, :price, :trend
 
   def initialize(name, lower_bound, upper_bound, volatility)
     @name = name

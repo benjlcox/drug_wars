@@ -18,9 +18,8 @@ class Backpack
     if has_inventory_space?(quantity)
       add_or_increment(item, quantity)
       @total_inventory_quantity += quantity
-      "Item put in backpack"
     else
-      "Not enough room in the backpack!"
+      false
     end
   end
 
@@ -37,8 +36,8 @@ class Backpack
     end
   end
 
-  def remove(item)
-    @inventory["#{item.name}"].delete
+  def remove(name)
+    @inventory.delete("#{name}")
   end
 
   def contents
