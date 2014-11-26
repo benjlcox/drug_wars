@@ -1,21 +1,21 @@
 class World
   attr_reader :day
 
-  def initialize
+  def initialize(test=false)
     @cities = {}
     @day = 1
-    load_from_file
+    load_from_file(test)
   end
 
   def list
     @cities
   end
 
-  def find(city)
-    if @cities[city].nil?
+  def find(name)
+    if @cities[name].nil?
       raise InvalidCity
     else
-      @cities[city]
+      @cities[name]
     end
   end
 
@@ -31,9 +31,14 @@ class World
   class InvalidCity < StandardError
   end
 
-  def load_from_file
-    city_db = YAML.load_file("./config/cities.yml")
-    drug_db = YAML.load_file("./config/drugs.yml")
+  def load_from_file(test)
+    if test
+      city_db = YAML.load_file("./test/fixtures/cities.yml")
+      drug_db = YAML.load_file("./test/fixtures/drugs.yml")
+    else
+      city_db = YAML.load_file("./config/cities.yml")
+      drug_db = YAML.load_file("./config/drugs.yml")
+    end
     city_db.each_pair do |city, drugs|
       city_drugs = {}
       drugs.each do |drug|

@@ -1,6 +1,6 @@
 class CityTest < Test::Unit::TestCase
   def setup
-    @player = Player.new("Ben", "Toronto")
+    @player = Player.new("Ben", "Toronto", true)
     @city = @player.current_city
   end
 

@@ -1,7 +1,7 @@
 class DrugTest < Test::Unit::TestCase
 
   def setup
-    @player = Player.new("Ben", "Toronto")
+    @player = Player.new("Ben", "Toronto", true)
     @drug = @player.current_city.drugs["Weed"]
   end
 
