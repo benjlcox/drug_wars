@@ -1,9 +1,9 @@
 class Player
   attr_reader :name, :current_city, :world
 
-  def initialize(name, city, test=false)
+  def initialize(name, city)
     @name = name
-    @world = World.new(test)
+    @world = World.new
     @current_city = @world.find(city)
     @backpack = Backpack.new(100)
     @wallet = Wallet.new(100)

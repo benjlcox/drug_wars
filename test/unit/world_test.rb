@@ -1,7 +1,7 @@
 class WorldTest < Test::Unit::TestCase
 
   def setup
-    @world = World.new(true)
+    @world = World.new
   end
 
   def test_world_has_a_day_reader_attribute

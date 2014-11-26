@@ -1,10 +1,10 @@
 class World
   attr_reader :day
 
-  def initialize(test=false)
+  def initialize
     @cities = {}
     @day = 1
-    load_from_file(test)
+    load_from_file
   end
 
   def list
@@ -31,8 +31,8 @@ class World
   class InvalidCity < StandardError
   end
 
-  def load_from_file(test)
-    if test
+  def load_from_file
+    if $TEST
       city_db = YAML.load_file("./test/fixtures/cities.yml")
       drug_db = YAML.load_file("./test/fixtures/drugs.yml")
     else
