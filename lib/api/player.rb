@@ -32,12 +32,9 @@ class Player
   end
 
   def travel(new_city)
-    if @current_city = @world.find(new_city)
-      @world.new_day
-      @current_city
-    else
-      @current_city
-    end
+    @current_city = @world.find(new_city)
+    @world.new_day
+    @current_city
   end
 
   def market
@@ -74,7 +71,11 @@ class Player
   end
 
   def remove_money(amount)
-    @wallet.decrement(amount)
+    if enough_money?(amount)
+      @wallet.decrement(amount)
+    else
+      false
+    end
   end
 
   def enough_money?(amount)
