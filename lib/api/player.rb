@@ -12,8 +12,7 @@ class Player
   def buy(name, quantity)
     drug = @current_city.drugs["#{name}"]
     cost = drug.price * quantity
-    if enough_money?(cost)
-      add_to_inventory(drug, quantity)
+    if enough_money?(cost) && add_to_inventory(drug, quantity)
       remove_money(cost)
     else
       false
