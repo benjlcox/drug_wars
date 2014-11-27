@@ -33,6 +33,11 @@ class PlayerTest < Test::Unit::TestCase
     assert_equal false, @player.buy(@drug.name, 9999999)
   end
 
+  def test_buy_fails_if_not_enough_space_in_backpack
+    @player.add_money(999999)
+    assert_equal false, @player.buy(@drug.name, 101)
+  end
+
   def test_sell_drug_removes_from_inventory
     @player.add_to_inventory(@drug, 1)
     before_inventory = @player.inventory.dup
