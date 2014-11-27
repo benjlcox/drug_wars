@@ -148,6 +148,11 @@ class PlayerTest < Test::Unit::TestCase
     assert_equal false, @player.enough_inventory?(@drug.name, 2)
   end
 
+  def test_inventory_space_remaining_returns_amount_of_space_left_in_backpack
+    @player.add_to_inventory(@drug, 1)
+    assert_equal 99, @player.inventory_space_remaining
+  end
+
   def test_check_money_returns_amount_of_money_player_has
     assert_equal 100, @player.check_money
   end

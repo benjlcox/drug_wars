@@ -87,6 +87,10 @@ class Player
     @backpack.find(name) >= quantity
   end
 
+  def inventory_space_remaining
+    @backpack.space_remaining
+  end
+
   def check_money
     @wallet.money
   end

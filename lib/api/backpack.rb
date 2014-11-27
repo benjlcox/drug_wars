@@ -47,6 +47,10 @@ class Backpack
     @inventory
   end
 
+  def space_remaining
+    @size - @total_inventory_quantity
+  end
+
   private
 
   def has_inventory_space?(quantity)
