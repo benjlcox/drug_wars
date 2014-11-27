@@ -21,7 +21,7 @@ class GameoverScreen < Screen
     result << ""
     result << ""
     result << ""
-    result << "Press any key to quit."
+    result << "Press enter to quit."
     result
   end
 end
