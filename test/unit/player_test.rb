@@ -150,4 +150,8 @@ class PlayerTest < Test::Unit::TestCase
   def test_check_day_returns_current_day
     assert_equal 1, @player.check_day
   end
+
+  def test_game_over_returns_false_if_game_is_not_over
+    assert_equal false, @player.game_over?
+  end
 end

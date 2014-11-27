@@ -96,4 +96,7 @@ class Player
     @world.day
   end
 
+  def game_over?
+    @world.game_over
+  end
 end

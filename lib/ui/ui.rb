@@ -8,14 +8,24 @@ class UI
     @current_screen = MarketplaceScreen.new(@player)
 
     loop do
-      @current_screen.paint
-      user_input = gets.chomp
-      break if user_input == "quit"
-      handle_user_input(user_input)
+      if game_is_over?
+        GameoverScreen.new(@player).paint
+        wait = gets.chomp
+        break
+      else
+        @current_screen.paint
+        user_input = gets.chomp
+        break if user_input == "quit"
+        handle_user_input(user_input)
+      end
     end
   end
 
   private
+
+  def game_is_over?
+    @player.game_over? ? true : false
+  end
 
   def handle_user_input(user_input)
     if @current_screen.allow_global_actions?

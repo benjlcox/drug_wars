@@ -1,9 +1,10 @@
 class World
-  attr_reader :day
+  attr_reader :day, :game_over
 
   def initialize
     @cities = {}
     @day = 1
+    @game_over = false
     load_from_file
   end
 
@@ -24,6 +25,13 @@ class World
       city.new_day
     end
     @day += 1
+    if @day > 30
+      @game_over = true
+    end
+  end
+
+  def end_game
+    @game_over = true
   end
 
   private

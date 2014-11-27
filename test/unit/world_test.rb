@@ -36,4 +36,18 @@ class WorldTest < Test::Unit::TestCase
     @world.find("Toronto").expects(:new_day).once
     @world.new_day
   end
+
+  def test_world_has_a_game_over_attribute_defaulted_to_false
+    assert_equal false, @world.game_over
+    assert_raise NoMethodError do
+      @world.game_over = true
+    end
+  end
+
+  def test_end_game_sets_game_over_to_true
+    before = @world.game_over
+    @world.end_game
+    assert @world.game_over
+    assert_not_equal before, @world.game_over
+  end
 end

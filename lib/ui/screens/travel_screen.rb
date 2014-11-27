@@ -27,7 +27,7 @@ class TravelScreen < Screen
 
   def submenu(input)
     city = handle_action(input, @player.world.list)
-    unless city.nil? || city == @player.city
+    unless city.nil? || city == @player.city || city == false
       @player.travel(city)
     end
     paint
