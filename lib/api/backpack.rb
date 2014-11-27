@@ -31,8 +31,11 @@ class Backpack
     if quantity <= @inventory["#{item.name}"]
       @inventory["#{item.name}"] -= quantity
       @total_inventory_quantity -= quantity
+      if @inventory["#{item.name}"] == 0
+        @inventory.delete("#{item.name}")
+      end
     else
-      "Cannot remove more from the backpack than you have"
+      false
     end
   end
 
