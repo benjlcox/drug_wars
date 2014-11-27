@@ -1,3 +1,5 @@
-Toronto: ["Weed","Hash","Shrooms"]
-Chicago: ["Cocaine", "Ecstacy", "Ketamine"]
-New York: ["Weed","Hash","Shrooms", "Cocaine", "Ecstacy", "Ketamine"]
+Toronto: ["Weed","Adderall","Hash","Shrooms", "Meth"]
+Chicago: ["Cocaine", "Ecstacy", "Ketamine", "Meth", "Adderall"]
+New York: ["Weed","Adderall", "Hash","Shrooms", "Cocaine", "Ecstacy", "Ketamine", "Ludes", "LSD"]
+Miami: ["Cocaine", "Meth", "Ketamine", "Ludes", "LSD"]
+Cancun: ["Weed", "Cocaine", "Ludes", "Ecstacy", "Shrooms", "LSD"]
