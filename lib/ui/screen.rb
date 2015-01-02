@@ -38,6 +38,10 @@
       raise RuntimeError.new("Subclass should implement 'allow_global_actions?' method")
     end
 
+    def ai_interface
+      raise RuntimeError.new("Sublass should implement 'ai_interface' method")
+    end
+
     def header
       [@big_separator,
       "#{@player.name} | $#{@player.check_money} | Day: #{@player.check_day} | City: #{@player.city} | Screen: #{name}",

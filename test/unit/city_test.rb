@@ -15,9 +15,12 @@ class CityTest < Test::Unit::TestCase
   end
 
   # Need to test something with a random result...
-  #def test_new_day_changes_drug_prices_in_city
-  #  drugs_original = @city.drugs["Weed"].price
-  #  @city.new_day
-  #  assert_not_equal @city.drugs["Weed"].price, drugs_original
-  #end
+  def test_new_day_changes_drug_prices_in_city
+    drug = @city.drugs["Weed"]
+    drug.stubs(:rand).returns(10)
+
+    original_price = drug.price
+    @city.new_day
+    assert_not_equal drug.price, original_price
+  end
 end

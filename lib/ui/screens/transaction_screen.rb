@@ -21,8 +21,10 @@ class TransactionScreen < Screen
     result << "You currently have #{@player.quantity_in_inventory(@drug)} and it's worth $#{@player.market[@drug].price}/each"
     if @type == "buy"
       max = (@player.check_money / @player.market[@drug].price)
-      max_possible = max > @player.inventory_space_remaining ? @player.inventory_space_remaining : max
-      result << "The maximum you can purchase is: #{max_possible}"
+      @max_possible = max > @player.inventory_space_remaining ? @player.inventory_space_remaining : max
+      result << "The maximum you can purchase is: #{@max_possible}"
+    else @type == "sell"
+      @max_possible = @player.quantity_in_inventory(@drug)
     end
     result << ""
     if @message
@@ -39,9 +41,18 @@ class TransactionScreen < Screen
     if @type == "buy"
       if @player.buy(@drug, input.to_i)
         BuyScreen.new(@player)
+      else
+        BuyScreen.new(@player, "You cannot do that.")
       end
     else
       SellScreen.new(@player) if @player.sell(@drug, input.to_i)
     end
+  end
+
+  def ai_interface
+    {
+      content: {"type" => @type, "drug" => @drug, "quantity_in_inventory" => @player.quantity_in_inventory(@drug), "price" => @player.market[@drug].price, "max" => @max_possible},
+      menu: nil
+    }
   end
 end

@@ -24,4 +24,11 @@ class GameoverScreen < Screen
     result << "Press enter to quit."
     result
   end
+
+  def ai_interface
+    {
+      content: "game over",
+      menu: nil
+    }
+  end
 end

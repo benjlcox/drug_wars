@@ -32,4 +32,14 @@ class TravelScreen < Screen
     end
     paint
   end
+
+  def ai_interface
+    i = 9
+    menu_options = {}
+    @player.world.list.keys.map { |city| i += 1; menu_options["#{city}"] = "#{i.to_s(36)}" }
+    {
+      content: menu_options,
+      menu: menu_options
+    }
+  end
 end

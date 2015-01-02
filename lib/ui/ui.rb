@@ -5,8 +5,7 @@ class UI
   end
 
   def start
-    @current_screen = MarketplaceScreen.new(@player)
-
+    @current_screen = BuyScreen.new(@player)
     loop do
       if game_is_over?
         GameoverScreen.new(@player).paint
@@ -14,7 +13,7 @@ class UI
         break
       else
         @current_screen.paint
-        user_input = gets.chomp
+        user_input = get_input
         break if user_input == "quit"
         handle_user_input(user_input)
       end
@@ -22,6 +21,14 @@ class UI
   end
 
   private
+
+  def get_input
+    if @player.is_ai?
+      @player.ai_perform(@current_screen)
+    else
+      gets.chomp
+    end
+  end
 
   def game_is_over?
     @player.game_over? ? true : false

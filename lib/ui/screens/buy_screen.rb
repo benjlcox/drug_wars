@@ -1,7 +1,8 @@
 class BuyScreen < Screen
 
-  def initialize(player)
+  def initialize(player, message=nil)
     super(player)
+    @message = message
   end
 
   def name
@@ -18,7 +19,7 @@ class BuyScreen < Screen
     result << ""
     i = 9
     result = result + @player.current_city.drugs.map { |name, drug| i += 1; str = "#{i.to_s(36)}) #{name} - $#{drug.price}"; str }
-    if @message
+    unless @message.nil?
       result << ""
       result << @message
     end
@@ -30,5 +31,16 @@ class BuyScreen < Screen
     if selection
       TransactionScreen.new(@player, {drug: selection, type:"buy"})
     end
+  end
+
+  def ai_interface
+    i = 9
+    content = {}
+    menu = {}
+    @player.current_city.drugs.map { |name, drug| i += 1; content["#{name}"] = drug.price; menu["#{name}"] = "#{i.to_s(36)}"}
+    {
+      content: content,
+      menu: menu
+    }
   end
 end

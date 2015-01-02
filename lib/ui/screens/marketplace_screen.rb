@@ -36,4 +36,13 @@ class MarketplaceScreen < Screen
       SellScreen.new(@player)
     end
   end
+
+  def ai_interface
+    content = {}
+    @player.current_city.drugs.map { |name, drug| content["#{name}"] = drug.price }
+    {
+      content: content,
+      menu: {"buy" => "b", "sell" => "s"}
+    }
+  end
 end

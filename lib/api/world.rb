@@ -25,7 +25,7 @@ class World
       city.new_day
     end
     @day += 1
-    if @day > 30
+    if @day > 100
       @game_over = true
     end
   end

@@ -1,15 +1,26 @@
 class Player
-  attr_reader :name, :current_city, :world
+  attr_reader :name, :current_city, :world, :is_ai
+  alias_method :is_ai?, :is_ai
 
-  def initialize(name, city)
+  def initialize(name, city, ai_player=false)
     @name = name
     @world = World.new
     @current_city = @world.find(city)
     @backpack = Backpack.new(100)
     @wallet = Wallet.new(100)
+    @is_ai = ai_player
+    if @is_ai
+      @ai = AI.new(@player)
+    end
+  end
+
+  def ai_perform(screen)
+    raise RuntimeError.new("Human players cannot perform AI actions") unless @is_ai
+    @ai.perform(screen)
   end
 
   def buy(name, quantity)
+    return false if quantity == 0
     drug = @current_city.drugs["#{name}"]
     cost = drug.price * quantity
     if enough_money?(cost) && add_to_inventory(drug, quantity)
@@ -28,6 +39,10 @@ class Player
     else
       false
     end
+  end
+
+  def available_to_sell_in_current_city
+    @current_city.drugs.keys & @backpack.contents.keys
   end
 
   def travel(new_city)
@@ -102,4 +117,5 @@ class Player
   def game_over?
     @world.game_over
   end
+
 end

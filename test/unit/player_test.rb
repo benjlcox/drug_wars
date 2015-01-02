@@ -56,6 +56,12 @@ class PlayerTest < Test::Unit::TestCase
     assert_equal false, @player.sell(@drug.name, 9999999)
   end
 
+  def test_available_to_sell_in_current_city_only_returns_drugs_player_has_that_can_be_sold_in_current_city
+    @player.add_to_inventory(@player.world.find("New York").drugs["Ketamine"], 1)
+    assert_not_empty @player.inventory
+    assert_empty @player.available_to_sell_in_current_city
+  end
+
   def test_travel_changes_players_city
     current = @player.city
     @player.travel("Chicago")

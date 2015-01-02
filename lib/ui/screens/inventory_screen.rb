@@ -35,4 +35,12 @@ class InventoryScreen < Screen
     #Open ditch screen
     paint
   end
+
+  def ai_interface
+    content = {}
+    {
+      content: @player.inventory.map { |name, quantity| content["#{name}"] = "#{quantity}"},
+      menu: nil
+    }
+  end
 end
